@@ -1,0 +1,101 @@
+:root{
+  --bg: #061423; /* deep teal / night base */
+  --card: linear-gradient(180deg, #0b1622 0%, #08121a 100%);
+  --muted: #b9ccd6; /* softer, readable muted text */
+  --accent: #ff6b6b; /* warm coral primary accent */
+  --accent-2: #2be7b8; /* mint secondary accent */
+  --glass: rgba(255,255,255,0.03);
+  --glass-2: rgba(255,255,255,0.02);
+  --success: #4fe1a3;
+  --text: #e7f6f5; /* primary text color */
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  /* updated background using new --bg */
+  background: radial-gradient(ellipse at 10% 10%, #093042 0%, var(--bg) 40%, #020315 100%);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* App wrapper */
+.app{
+  width: min(920px, 96%);
+}
+
+/* Top row */
+.top{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:18px;
+  justify-content:space-between;
+}
+.logo{margin:0;font-size:1.15rem;font-weight:700;letter-spacing:0.4px}
+.search{
+  display:flex;
+  gap:8px;
+  flex:1;
+  max-width:520px;
+  margin:0 12px;
+}
+.search input{
+  flex:1;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+  background:var(--glass);color:inherit;outline:none;font-size:0.95rem;
+}
+.search button{
+  padding:10px 12px;border-radius:10px;border:none;
+  /* use the new accent gradient */
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color:#051217;font-weight:700;cursor:pointer;
+}
+.controls{display:flex;gap:8px}
+.chip{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.03);padding:8px 10px;border-radius:999px;color:var(--muted);cursor:pointer}
+
+/* Weather card */
+.card{
+  border-radius:16px;padding:18px;background:var(--card);border:1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 12px 40px rgba(2,8,30,0.6);
+}
+.current{display:flex;flex-direction:column;gap:14px}
+.place{font-weight:700;font-size:1.05rem}
+.now{display:flex;gap:14px;align-items:center}
+.icon{width:86px;height:86px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+.temp{font-size:2.4rem;font-weight:800}
+.desc{font-size:0.95rem;color:var(--muted)}
+.meta{display:flex;gap:16px;color:var(--muted);font-size:0.9rem}
+
+/* Forecast */
+.forecast{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.fc-card{flex:1;min-width:120px;background:var(--glass-2);border-radius:12px;padding:10px;border:1px solid rgba(255,255,255,0.02);text-align:center}
+.fc-card .day{font-weight:700}
+.fc-card .t{margin-top:6px;font-weight:700}
+
+/* Note and toast */
+.note{margin-top:12px;color:var(--muted)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:28px;background:rgba(6,10,18,0.95);padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);opacity:0;pointer-events:none;transition:opacity .25s ease;color:#dff;}
+.toast.show{opacity:1;pointer-events:auto}
+
+/* Visual weather backgrounds (apply to body) */
+/* brighter, friendlier daytime; deeper nights; distinct rainy/snowy/cloudy */
+body.clear-day{background: linear-gradient(180deg,#a7e8ff 0%, var(--bg) 60%);} 
+body.clear-night{background: linear-gradient(180deg,#07142b 0%, #020315 100%);}
+body.rainy{background: linear-gradient(180deg,#324455 0%, var(--bg) 80%);}
+body.snowy{background: linear-gradient(180deg,#eef8ff 0%, var(--bg) 80%); color:#061018;}
+body.cloudy{background: linear-gradient(180deg,#6b7f8f 0%, var(--bg) 80%);}
+
+/* Responsive */
+@media (max-width:720px){
+  .top{flex-direction:column;align-items:stretch}
+  .search{max-width:none;margin:8px 0}
+  .now{align-items:flex-end}
+  .forecast{gap:8px}
+}
