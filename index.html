@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Magical Weather — Vanilla</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1 class="logo">Magical Weather</h1>
+
+      <form id="search-form" class="search" aria-label="Search city">
+        <input id="q" type="search" placeholder="Search city (e.g. Nairobi)" autocomplete="off" />
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="controls">
+        <button id="unit-toggle" class="chip">°C</button>
+        <button id="use-loc" class="chip">Use my location</button>
+      </div>
+    </header>
+
+    <section id="weather-card" class="card" aria-live="polite">
+      <div class="current">
+        <div class="place" id="place">—</div>
+        <div class="now">
+          <div id="icon" class="icon" aria-hidden="true"></div>
+          <div>
+            <div id="temp" class="temp">--°</div>
+            <div id="desc" class="desc muted">—</div>
+          </div>
+        </div>
+        <div class="meta">
+          <div>Feels: <span id="feels">—</span></div>
+          <div>Wind: <span id="wind">—</span></div>
+          <div>Humidity: <span id="hum">—</span></div>
+        </div>
+      </div>
+
+      <div class="forecast" id="forecast">
+        <!-- 3-day forecast cards injected here -->
+      </div>
+
+      <div class="note muted" id="note">Search a city or use your location — data from Open-Meteo / OpenStreetMap</div>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
